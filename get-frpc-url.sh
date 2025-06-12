@@ -30,8 +30,8 @@ get_frpc_url() {
             # debian 12 initrd 没有 xargs
             # github 不支持 ipv6
             if is_in_china || is_ipv6_only; then
-                wget -O- https://mirrors.nju.edu.cn/github-release/fatedier/frp/LatestRelease/frp_sha256_checksums.txt |
-                    grep -m1 frp_ | cut -d_ -f2
+                wget --spider -S https://github.com/fatedier/frp/releases/latest 2>&1 |
+                    grep -m1 '^  Location:' | sed 's,.*/tag/v,,'
             else
                 # https://api.github.com/repos/fatedier/frp/releases/latest 有请求次数限制
 
@@ -66,14 +66,14 @@ get_frpc_url() {
                 echo 'NOT_SUPPORT'
                 return 1
             else
-                echo https://mirrors.nju.edu.cn/github-release/fatedier/frp
+                echo https://github.com/fatedier/frp/releases/download
             fi
         else
             if is_in_china; then
                 if is_need_old_version; then
                     echo https://github.com/fatedier/frp/releases/download
                 else
-                    echo https://mirrors.nju.edu.cn/github-release/fatedier/frp
+                    echo https://github.com/fatedier/frp/releases/download
                 fi
             else
                 echo https://github.com/fatedier/frp/releases/download

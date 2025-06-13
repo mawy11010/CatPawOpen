@@ -73,7 +73,7 @@ get_frpc_url() {
                 if is_need_old_version; then
                     echo https://github.com/fatedier/frp/releases/download
                 else
-                    echo https://github.com/fatedier/frp/releases/download
+                    echo https://gh.nxnow.top/https://github.com/fatedier/frp/releases/download
                 fi
             else
                 echo https://github.com/fatedier/frp/releases/download
